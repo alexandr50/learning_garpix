@@ -1,12 +1,8 @@
 import requests
+def get_response(url, params):
 
-def get_response(url, *args):
-    count = 0
-    for i in url:
-        if i == '@':
-            url = url.replace(i, args[count], 1)
-            count += 1
+    res = requests.get(url, params=params)
+    return res.url
 
-    return requests.get(url)
+print(get_response('https://market.yandex.ru/search', {'from_global': 'true', 'sorting': 'price', 'text': 'd3*'}))
 
-print(get_response('https://www.ozon.ru/search/?from_global=@&sorting=@&text=@', 'true', 'price', 'd3'))
